@@ -39,3 +39,4 @@ exports.adminDetailFood=(req, res)=>{
       res.render('admin/detail_food',  { layout:'../admin/layout.hbs',result});
     })
 }
+
