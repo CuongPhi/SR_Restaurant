@@ -1,5 +1,5 @@
 var monAn = require('../model/MonAn');
-var loaiMonAn = require('../model/LoaiMonAn');
+
 
  exports.loadListFood = function(req,res) {
      monAn.find(function(err, docs){
@@ -40,16 +40,3 @@ exports.adminDetailFood=(req, res)=>{
     })
 }
 
-exports.adminListTypeFood=(req, res)=>{
-    loaiMonAn.find(function(err, result){
-        if(err) throw err;
-        res.render('admin/list_type_food',  { layout:'../admin/layout.hbs', result });
-      })}
-
-exports.adminUpdateTypeFood=(req, res)=>{
-    var ma = req.params.id;
-    loaiMonAn.findOne({ma_loai :ma}, function(err, result){
-      if(err) throw err;
-      res.render('admin/update_type_food', {layout:'../admin/layout.hbs', result});
-    })
-}

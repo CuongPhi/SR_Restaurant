@@ -4,8 +4,7 @@ var monAn = require('../model/MonAn');
 var loaiMonAn = require('../model/LoaiMonAn');
 var path = require('path');
 var foodcController = require('../controller/foodcontroller');
-
-
+var typefoodController = require('../controller/typefood.js');
 /* GET home page. */
 router.get('/', foodcController.loadListFood);
 
@@ -17,21 +16,13 @@ router.get('/admin/list_food', foodcController.adminListFood);
 
 router.get('/admin/detail_food/:id',foodcController.adminDetailFood);
 
-router.get('/admin/list_type_food', foodcController.adminListTypeFood);
+router.get('/admin/list_type_food', typefoodController.adminListTypeFood);
 
-router.get('/admin/update_type_food/:id',foodcController.adminUpdateTypeFood);
+router.get('/admin/update_type_food/:id',typefoodController.adminUpdateTypeFood);
 
-  // router.post('/admin/update_type_food/:id', function(req, res){
-  //   var ma = req.body.ma.trim();
-    
-  //   var ten = req.body.ten.trim();
-  //   var giatrims = { $set: {ma_loai: ma, ten_loai: ten} };
-  //   loaiMonAn.update(ma,giatrims, function(err, res){
-  //     if(err) throw err;
-  //     // res.send("<div>Cập nhật thành công</div>");
-     
-  //   });
-
+  router.post('/admin/update_type_food/:id', typefoodController.adminPostUpdate);
+  router.get('/admin/insert_type_food',typefoodController.adminInsertTypeFood);
+  router.post('/admin/insert_type_food/', typefoodController.adminInsertPost);
   
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;
