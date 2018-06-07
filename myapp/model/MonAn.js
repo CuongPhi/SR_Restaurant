@@ -14,4 +14,6 @@ var mon_an = new Schema({
  don_vi_tinh:{type: String, default:'đĩa'},
  hinh:{type:String, default:''}
 });
-module.exports = mongoose.model('MON_AN',mon_an);
+module.exports =   mongoose.model('MON_AN',mon_an);
+
+
