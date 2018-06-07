@@ -7,6 +7,8 @@ var mongoose= require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var expressHbs = require('express-handlebars');
+var session = require('express-session');
+
 var app = express();
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
 app.engine('hbs', expressHbs({
@@ -25,19 +27,19 @@ app.set('view engine', '.hbs');
 //app.set('views', viewpath);
 app.use(logger('dev'));
 app.use(express.json());
-
+app.use(session({secret : 'mysupersecret', resave : false, saveUninitialized: false}));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
+// r ă, them lai s
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

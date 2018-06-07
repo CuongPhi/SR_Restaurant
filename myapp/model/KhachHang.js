@@ -9,8 +9,13 @@ var khach_hang = new Schema({
  email: {type:String,default: ''},
  dienthoai: {type:String,minlength :6, maxlength :12},
  ghi_chu: {type:String,default:''},
- diachi: {type:String, default:''}
+ diachi: {type:String, default:''},
+ userName: {type:String, required: true , minlength: 6},
+ passWord: {type:String, required: true,minlength: 8},
+ 
+
 });
+//xog r đó
 module.exports = mongoose.model('KHACH_HANG',khach_hang);
 module.exports.create({
     ma_khach_hang:1,
@@ -18,5 +23,7 @@ module.exports.create({
     email:'kdng',
     dienthoai:'0938035734',
     ghi_chu:'khách hàng thân thiết',
-    diachi:'quận 1'
+    diachi:'quận 1',
+	userName: 'ngoc123',
+	passWord: 'ngoc123456'
 })

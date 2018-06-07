@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var monAn = require('../model/MonAn');
-var loaiMonAn = require('../model/LoaiMonAn');
 var path = require('path');
 var foodcController = require('../controller/foodcontroller');
-
+var cartController = require('../controller/cartcontroller');
+var customerController = require('../controller/customerController');
+var csrf = require('csurf');
+var csrfProtection = csrf();
+router.use(csrfProtection);
 
 /* GET home page. */
 router.get('/', foodcController.loadListFood);
@@ -20,6 +22,12 @@ router.get('/admin/detail_food/:id',foodcController.adminDetailFood);
 router.get('/admin/list_type_food', foodcController.adminListTypeFood);
 
 router.get('/admin/update_type_food/:id',foodcController.adminUpdateTypeFood);
+
+router.get('/add-to-cart/:id', cartController.addToCart);
+
+router.get('/user/signup', customerController.SignUp);
+
+router.post('/user/signup', customerController.SignUpPost)
 
   // router.post('/admin/update_type_food/:id', function(req, res){
   //   var ma = req.body.ma.trim();
