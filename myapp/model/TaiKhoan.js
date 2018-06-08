@@ -8,8 +8,3 @@ var tk = new Schema({
     loaiTK:{type:Number, required:true, min:1, max:2}//1: quản lí, 2: nhân viên
 })
 module.exports = mongoose.model('TAI_KHOAN',tk);
-module.exports.create({
-    _user:'thanhhue',
-    pass:'12345678',
-    loaiTK:'2'
-})

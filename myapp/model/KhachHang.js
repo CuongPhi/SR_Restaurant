@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
  
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
 var Schema = mongoose.Schema;
- 
+var bcrypt = require('bcrypt-nodejs');
+
+
+
 var khach_hang = new Schema({
  ma_khach_hang: {type:Number,min : 0, required:true},
  ten_khach_hang: {type:String,required:true},
@@ -15,15 +18,15 @@ var khach_hang = new Schema({
  
 
 });
-//xog r đó
+
+
+khach_hang.methods.encryptPassWord=function(pass){
+    return bcrypt.hashSync(pass,bcrypt.genSaltSync(5),null);
+};
+khach_hang.methods.decryptPassWord= function(pass){
+    return bcrypt.compareSync(pass, this.passWord);
+}
+
 module.exports = mongoose.model('KHACH_HANG',khach_hang);
-module.exports.create({
-    ma_khach_hang:1,
-    ten_khach_hang :'abc',
-    email:'kdng',
-    dienthoai:'0938035734',
-    ghi_chu:'khách hàng thân thiết',
-    diachi:'quận 1',
-	userName: 'ngoc123',
-	passWord: 'ngoc123456'
-})
+
+

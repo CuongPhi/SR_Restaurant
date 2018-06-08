@@ -8,9 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var expressHbs = require('express-handlebars');
 var session = require('express-session');
-
+var passport = require('passport');
+var flash = require('connect-flash');
 var app = express();
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
+require('./config/passport')
 app.engine('hbs', expressHbs({
   extname: 'hbs', 
   defaultLayout: 'layout', 
@@ -28,6 +30,9 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(session({secret : 'mysupersecret', resave : false, saveUninitialized: false}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));

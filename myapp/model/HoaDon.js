@@ -12,11 +12,3 @@ var hoadon = new Schema({
  ghi_chu: {type:String, default:''}
 });
 module.exports = mongoose.model('HOA_DON',hoadon);
-module.exports.create({
-    _idmahd:1,
-    ma_khach_hang :1,
-    ngay_dat: Date.now(),
-    tong_tien:200000,
-    con_lai:300000,
-    ghi_chu:'khách hàng thân thiết'
-})

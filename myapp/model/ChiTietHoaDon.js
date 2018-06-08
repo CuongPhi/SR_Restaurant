@@ -10,9 +10,3 @@ var cthoadon = new Schema({
  don_gia: {type:Number,default: 0}
 });
 module.exports = mongoose.model('CHI_TIET_HOA_DON',cthoadon);
-module.exports.create({
-    _idmahd:1,
-    ma_mon :1,
-   so_luong: 1,
-   don_gia: 200000
-})
