@@ -40,9 +40,15 @@ router.post('/customer/signup',passport.authenticate('local.signup',{
    failureFlash:true
 }));
 
+
 router.get('/customer/profile',customerController.Profile )
 
 router.get('/customer/signin',customerController.SignIn)
+router.post('/customer/signin',passport.authenticate('local.signin',{
+   successRedirect:'/',
+   failureRedirect:'/customer/signin',
+   failureFlash:true
+}));
 
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;
