@@ -4,17 +4,25 @@
 			   <div class=" login-right">
 			  	<h3>REGISTERED CUSTOMERS</h3>
 				<p>If you have an account with us, please log in.</p>
-				<form>
+				<form action="/customer/signin" method="POST">
+				 {{#if hasError}}
+								<div class="alert alert-danger">
+									{{#each messages}}
+										<p>{{this}}
+									{{/each}}
+								</div>
+							{{/if}}
 				  <div>
-					<span>Email Address<label>*</label></span>
-					<input type="text"> 
+					<span>UserName<label>*</label></span>
+					<input name="userName" type="text"> 
 				  </div>
 				  <div>
 					<span>Password<label>*</label></span>
-					<input type="text"> 
+					<input name="passWord" type="text"> 
 				  </div>
-				  <a class="forgot" href="#">Forgot Your Password?</a>
-				  <input type="submit" value="Login">
+				   <a class="forgot" href="#">Forgot Your Password?</a>
+				 	<input name="_csrf" type="hidden" value="{{csrfToken}}">
+					<input type="submit" value="Login">
 			    </form>
 			   </div>	
 			    <div class=" login-left">

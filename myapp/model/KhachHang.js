@@ -18,15 +18,12 @@ var khach_hang = new Schema({
  
 
 });
-
-
 khach_hang.methods.encryptPassWord=function(pass){
     return bcrypt.hashSync(pass,bcrypt.genSaltSync(5),null);
 };
 khach_hang.methods.decryptPassWord= function(pass){
     return bcrypt.compareSync(pass, this.passWord);
 }
-
 module.exports = mongoose.model('KHACH_HANG',khach_hang);
 
 

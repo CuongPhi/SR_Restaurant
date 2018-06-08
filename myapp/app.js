@@ -11,6 +11,9 @@ var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
 var app = express();
+var validator= require('express-validator');
+var mongoStore = require("connect-mongo")(session);
+
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
 require('./config/passport')
 app.engine('hbs', expressHbs({
@@ -29,13 +32,29 @@ app.set('view engine', '.hbs');
 //app.set('views', viewpath);
 app.use(logger('dev'));
 app.use(express.json());
-app.use(session({secret : 'mysupersecret', resave : false, saveUninitialized: false}));
+app.use(session({
+  secret : 'mysupersecret', 
+  resave : false, 
+  saveUninitialized: false,
+  store: new mongoStore({mongooseConnection:mongoose.connection}),
+  cookie:{ maxAge: 180*60*1000 }
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+app.use(validator());
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use((req,res,next)=>{
+  res.locals.login=req.isAuthenticated();
+  res.locals.session=req.session;
+  next();
+})
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

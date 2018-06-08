@@ -26,13 +26,20 @@
 				   <form method="POST" >
 					     <div class="  register-bottom-grid">
 						    <h3>LOGIN INFORMATION</h3>
+							{{#if hasError}}
+								<div class="alert alert-danger">
+									{{#each messages}}
+										<p>{{this}}
+									{{/each}}
+								</div>
+							{{/if}}
 							<div class="mation">
 								<span>UserName<label>*</label></span>
 								<input name="userName" type="text">
 								<span>Password<label>*</label></span>
 								<input name="passWord" type="text">
 								<span>Confirm Password<label>*</label></span>
-								<input  name="userName2" type="text">
+								<input  name="passWord2" type="text">
 							</div>
 					 </div>
 					   	<input name="_csrf" type="hidden" value="{{csrfToken}}">

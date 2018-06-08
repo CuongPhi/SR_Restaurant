@@ -10,3 +10,4 @@ router.get('/single', function(req, res, next){
   res.sendfile(__dirname+'/single.hbs');
 });
 module.exports = router;
+
