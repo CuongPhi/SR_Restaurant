@@ -50,13 +50,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req,res,next)=>{
-  res.locals.login=req.isAuthenticated();
+  res.locals._islogin=req.isAuthenticated();
   res.locals.session=req.session;
   next();
 })
 
-app.use('/', indexRouter);
+
 app.use('/users', usersRouter);
+app.use('/', indexRouter);
 
 
 // catch 404 and forward to error handler
