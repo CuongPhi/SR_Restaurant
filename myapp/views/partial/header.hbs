@@ -50,11 +50,16 @@
 					<div class="clearfix"> </div>
 				</div>
 				<div class="header-bottom-right">					
-						<div class="account"><a href="login.html"><span> </span>YOUR ACCOUNT</a></div>
+						<div class="account"><a href="/customer/profile"><span> </span>YOUR ACCOUNT</a></div>
 							<ul class="login">
-								<li><a href="/customer/signin"><span> </span>LOGIN</a></li> |
-								<li ><a href="/customer/signup">SIGNUP</a></li>
-								
+								{{#if _islogin}}
+									<li><a href="/customer/signout"><span> </span>LOGOUT</a></li> |
+									<li ><a href="/customer/signup">SIGNUP</a></li>
+
+								{{else}}
+									<li><a href="/customer/signin"><span> </span>LOGIN</a></li> |
+									<li ><a href="/customer/signup">SIGNUP</a></li>
+								{{/if}}
 							</ul>
 						<div class="cart"><a href="#"><span> </span>CART</a></div>
 					<div class="clearfix"> </div>

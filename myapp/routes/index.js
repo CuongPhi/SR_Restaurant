@@ -33,7 +33,7 @@ router.get('/admin/update_type_food/:id',typefoodController.adminUpdateTypeFood)
   router.get('/admin/insert_type_food',typefoodController.adminInsertTypeFood);
   router.post('/admin/insert_type_food/', typefoodController.adminInsertPost);
   
-router.get('/customer/signup',customerController.SignUp);
+router.get('/customer/signup', isNotLoggedIn,  customerController.SignUp);
 router.post('/customer/signup',passport.authenticate('local.signup',{
    successRedirect:'/customer/signin',
    failureRedirect:'/customer/signup',
@@ -41,14 +41,23 @@ router.post('/customer/signup',passport.authenticate('local.signup',{
 }));
 
 
-router.get('/customer/profile',customerController.Profile )
+router.get('/customer/profile', customerController.Profile )
 
-router.get('/customer/signin',customerController.SignIn)
+router.get('/customer/signin', isNotLoggedIn,customerController.SignIn)
 router.post('/customer/signin',passport.authenticate('local.signin',{
    successRedirect:'/',
    failureRedirect:'/customer/signin',
    failureFlash:true
 }));
+
+router.get('/customer/signout', isLoggedIn,function(req,res,next){
+  req.logout();
+  res.redirect('/');
+});
+
+router.get('/add-to-cart/:id',isLoggedIn,customerController.AddToCart);
+
+
 
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;
@@ -69,3 +78,17 @@ router.post('/customer/signin',passport.authenticate('local.signin',{
 
 
 module.exports = router;
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  console.log("adsadada");
+  res.redirect('/')
+}
+function isNotLoggedIn(req, res, next){
+  if(!req.isAuthenticated()){
+    return next();
+  }
+  res.redirect('/')
+}
