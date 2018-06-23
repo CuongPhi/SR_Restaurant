@@ -58,6 +58,9 @@ router.get('/customer/signout', isLoggedIn,function(req,res,next){
 router.get('/add-to-cart/:id',isLoggedIn,customerController.AddToCart);
 
 
+router.get('/cartview', cartController.cartView)
+
+
 
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;

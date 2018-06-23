@@ -15,3 +15,12 @@ module.exports.addToCart = (req,res)=>{
         res.redirect('/');
     });    
 }
+
+module.exports.cartView= (req,res)=>{
+    if(!req.session.cart){
+        return res.render('shop/cartview', {products: null});
+
+    }
+    var cart = new Cart(req.session.cart);
+    res.render('shop/cartview', {products: cart.returnArr(), totalPrice: cart.totalPrice})
+}
