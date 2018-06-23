@@ -24,3 +24,18 @@ module.exports.cartView= (req,res)=>{
     var cart = new Cart(req.session.cart);
     res.render('shop/cartview', {products: cart.returnArr(), totalPrice: cart.totalPrice})
 }
+
+module.exports.checkOut=(req,res)=>{
+    var messages=req.flash('error');
+    var link ='';
+    if(req.isAuthenticated()){
+        if(!req.session.cart){
+            return res.redirect('shop/cartview')
+        }
+        res.render('shop/checkout', {total :new Cart(req.session.cart).totalPrice, csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0})
+    }
+    else {
+        res.render('customer/signin',{csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0})
+    }
+
+}
