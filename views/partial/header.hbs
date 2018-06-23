@@ -61,7 +61,9 @@
 									<li ><a href="/customer/signup">SIGNUP</a></li>
 								{{/if}}
 							</ul>
-						<div class="cart"><a href="#"><span> </span>CART</a></div>
+						<div class="cart"><a href="/cartview"><span> </span></a>
+							<span class="badge">{{session.cart.totalQty}}</span>
+						</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>	
