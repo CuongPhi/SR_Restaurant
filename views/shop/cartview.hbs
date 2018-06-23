@@ -1,3 +1,4 @@
+<br/>
 <div class="container">
 {{# if products}}
     <div class="row">
@@ -7,7 +8,7 @@
                     <li class='list-group-item'>
                         <span class="badge">{{this.qty}}</span>
                         <strong>{{this.item.ten_mon}}</strong>
-                        <span class="lable label-success">{{this.don_gia}} </span>
+                        <span class="lable label-success">{{this.don_gia}} đ</span>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary btn-xs dropdown-toggle" data-toggle='dropdown'> Click <span class="caret"></span>  </button>
                                 <ul class="dropdown-menu">
@@ -21,11 +22,11 @@
         </div>
          <div class="row" >
             <div class="col-sm-6 col-md-6">
-                <strong>Total: {{totalPrice}}</strong>
+                <strong>Tổng tiền: {{totalPrice}} đ</strong>
             </div>
             <hr>
-             <div class="col-sm-6 col-md-6">
-                <button type="button" class="btn btn-success">Thanh toán</button>
+             <div  class="col-sm-6 col-md-6">
+                <a href="/checkout" type="button" class="btn btn-success">Thanh toán</a>
             </div>
         </div>
         

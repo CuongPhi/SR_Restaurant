@@ -55,16 +55,16 @@ router.get('/customer/signout', isLoggedIn,function(req,res,next){
   res.redirect('/');
 });
 
-router.get('/add-to-cart/:id',isLoggedIn,customerController.AddToCart);
+router.get('/add-to-cart/:id',customerController.AddToCart);
 
 
 router.get('/cartview', cartController.cartView)
 
-
+router.get('/checkout',cartController.checkOut)
 
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;
-//     monAn.aggregate([
+//     monAn.aggregate([rs
 
 //       {$lookup:{ from: 'loaiMonAn', localField:'ma_loai', 
 //         foreignField:'_id',as:'myCustomResut'}},
