@@ -13,7 +13,8 @@ module.exports.SignUpPost= (req,res)=>{
 module.exports.Profile=(req,res)=>{
     var messages=req.flash('error');
     if(req.isAuthenticated()){
-    res.render('customer/profile',{csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
+      //  var _kh = KH.findById()
+        res.render('customer/profile',{user:req.user,csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
     }
     else {
         res.render('customer/signup',{csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
