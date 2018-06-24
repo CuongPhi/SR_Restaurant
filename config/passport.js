@@ -52,7 +52,9 @@ passport.use(
         newCus.userName = userName;
         newCus.passWord = newCus.encryptPassWord(passWord);
         newCus.ma_khach_hang = 1;
-        newCus.ten_khach_hang = "z";
+        newCus.ten_khach_hang = "Nguyen van a";
+        newCus.dienthoai = "0987456321";
+
         newCus.save((err, result) => {
           if (err) {
             return done(err);
