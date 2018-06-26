@@ -12,7 +12,7 @@
                 <th>Tác vụ</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody> 
             {{#each result}}
             <tr>
                 <td data-th="Name"><span class="bt-content">{{this.ma_loai}}</span></td>
@@ -24,7 +24,7 @@
                 
             </tr>
           {{/each}}
-            
+            <input name="_csrf" type="hidden" value="{{csrfToken}}">
         </tbody>
     </table>
 </div>

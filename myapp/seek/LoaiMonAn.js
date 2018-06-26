@@ -1,4 +1,4 @@
-var loaiMonAn = require('../modle/LoaiMonAn.js');
+var loaiMonAn = require('../model/LoaiMonAn.js');
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
 var loai_mon_an = [

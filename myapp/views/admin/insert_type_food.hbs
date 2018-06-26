@@ -18,12 +18,13 @@
                         <input type="text" class="form-control1" id="focusedinput" name="ten" value="">
                     </div>
                 </div>
-               
-               
+            
+                <input name="_csrf" type="hidden" value="{{csrfToken}}">
                 <div class="row">
                  <div class="text-center">
-                <button class="alert alert-success">Thêm</button>
-                <a href="/admin/list_type_food"class="alert alert-warming">Hủy</a>
+                    
+                <button class="btn btn-success">Thêm</button>
+                <a href="/admin/list_type_food"class="btn btn-warning">Hủy</a>
                 </div>
             </div>
             </form>

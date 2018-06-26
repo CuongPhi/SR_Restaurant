@@ -9,13 +9,13 @@ var bcrypt = require('bcrypt-nodejs');
 var khach_hang = new Schema({
  ma_khach_hang: {type:Number,min : 0, required:true},
  ten_khach_hang: {type:String,required:true},
- email: {type:String,default: ''},
+ email: {type:String,required:true,minlength:5},
  dienthoai: {type:String,minlength :6, maxlength :12},
  ghi_chu: {type:String,default:''},
  diachi: {type:String, default:''},
  userName: {type:String, required: true , minlength: 6},
  passWord: {type:String, required: true,minlength: 8},
- 
+ trangThai:{type:String, default:"Thành viên", }
 
 });
 

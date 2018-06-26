@@ -10,6 +10,7 @@ var expressHbs = require('express-handlebars');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var bodyParser = require('body-parser');
 var app = express();
 mongoose.connect('mongodb://localhost/QUAN_LI_NHA_HANG');
 require('./config/passport')
@@ -38,8 +39,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
-
+app.use(bodyParser.urlencoded({extended: true}));
+//app.use(app.router);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
