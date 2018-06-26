@@ -17,7 +17,7 @@ module.exports.Profile=(req,res)=>{
         res.render('customer/profile',{user:req.user,csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
     }
     else {
-        res.render('customer/signup',{csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
+        res.render('customer/signin',{csrfToken: req.csrfToken(), messages:messages, hasError:messages.length>0});
     }
 }
 
