@@ -8,7 +8,7 @@ exports.adminUpdateTypeFood=(req, res)=>{
     var ma = req.params.id;
     loaiMonAn.findOne({ma_loai :ma}, function(err, result){
       if(err) throw err;
-      res.render('admin/update_type_food', {layout:'../admin/layout.hbs', result});
+      res.render('admin/update_type_food', {layout:'../admin/layout.hbs', result, csrfToken:req.csrfToken()});
     })
 }
 exports.adminPostUpdate=(req, res)=>{
@@ -19,13 +19,13 @@ exports.adminPostUpdate=(req, res)=>{
       if(err) throw err;
       else{
         console.log(result);
-        res.render('admin/update_type_food', {layout:'../admin/layout.hbs', result});
+        res.render('admin/update_type_food', {layout:'../admin/layout.hbs', result, csrfToken:req.csrfToken()});
       }
       
     })
 }
 exports.adminInsertTypeFood=(req, res)=>{
-    res.render('admin/insert_type_food',  { layout:'../admin/layout.hbs' });
+    res.render('admin/insert_type_food',  { layout:'../admin/layout.hbs', csrfToken:req.csrfToken() });
 }
 exports.adminInsertPost=(req, res)=>{
     var ma = req.body.ma.trim();
@@ -39,5 +39,16 @@ exports.adminInsertPost=(req, res)=>{
   new: true,   // return new doc if one is upserted
   upsert: true
     })
-    res.render('admin/list_type_food', { layout:'../admin/layout.hbs' });
+    res.render('admin/list_type_food', { layout:'../admin/layout.hbs', csrfToken:req.csrfToken() });
 }
+exports.adminDelete=(req, res)=>{
+    var ma = req.params.id;
+    loaiMonAn.deleteOne({ma_loai : ma}, function(err, result){
+        if(err) throw err;
+        else console.log("Xoa thanh cong!");
+     
+    })
+    loaiMonAn.find(function(err, result){
+        if(err) throw err;
+        res.render('admin/list_type_food',  { layout:'../admin/layout.hbs', result });
+      })}

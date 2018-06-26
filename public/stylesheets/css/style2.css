@@ -16,7 +16,7 @@ body a{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
-	background:#011D4A!important;
+	/* background:#011D4A!important; */
 }
 a:focus, a:active, a:hover ,a.dropdown-toggle{
     outline: none;
@@ -1820,7 +1820,7 @@ code {
 }
 .btn-danger {
     color: #fff;
-    background-color: #fcb216;
+    background-color: red;
     border-color: #fcb216;
 }
 .btn-danger:hover, .btn-danger:focus, .btn-danger.focus, .btn-danger:active, .btn-danger.active, .open > .dropdown-toggle.btn-danger {
@@ -1841,7 +1841,7 @@ code {
     border-radius: 3px;
 }
 .btn-group-lg > .btn, .btn-lg, .btn-group-lg > .btn {
-    width: 105px;
+    width: 120px;
     font-size: 1em;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
