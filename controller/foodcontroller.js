@@ -24,7 +24,7 @@ var upload = multer({ storage: storage });
         for(var i =0; i <docs.length; i+=chucksize){
          monAnChuck.push(docs.slice(i, i+chucksize));
          }
-        res.render('index',{title:'Quản lí quán ăn', mon_ans:monAnChuck});        
+        res.render('index',{  user: req.user, title:'Quản lí quán ăn', mon_ans:monAnChuck});        
     });
 };
 exports.FoodPage = function(req, res){

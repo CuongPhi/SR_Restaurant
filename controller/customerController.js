@@ -39,7 +39,9 @@ module.exports.AddToCart = (req,res,next)=>{
         cart.addItem(product,productId);
         req.session.cart=cart;
         console.log(req.session.cart);
-        res.redirect('/');
+        var sl = req.session.cart.totalQty.toString();
+        res.status(200).send(sl);
+       // res.redirect('/');
     });
 }
 exports.adminListCustomer=(req, res)=>{
