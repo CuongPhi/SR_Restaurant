@@ -30,17 +30,31 @@ exports.adminInsertTypeFood=(req, res)=>{
 exports.adminInsertPost=(req, res)=>{
     var ma = req.body.ma.trim();
     var ten = req.body.ten.trim();
-    loaiMonAn.fin
-    loaiMonAn.findAndModify({
-        query: { ma_loai: ma },
-  update: {
-    $setOnInsert: { ten_loai: ten }
-  },
-  new: true,   // return new doc if one is upserted
-  upsert: true
+    var loaiMoi = new loaiMonAn({
+    ma_loai:ma,
+    ten_loai:ten
     })
-    res.render('admin/list_type_food', { layout:'../admin/layout.hbs', csrfToken:req.csrfToken() });
+    
+    loaiMonAn.findOneAndUpdate(
+        { ma_loai: ma },
+        loaiMoi,
+     // return new doc if one is upserted
+     { upsert: true, new: true, runValidators: true}, 
+     function(err, doc)
+     {
+        if(err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            kq=doc;
+        }
+     }
+    )
+    res.render('admin/insert_type_food', { layout:'../admin/layout.hbs',csrfToken:req.csrfToken()});
 }
+
 exports.adminDelete=(req, res)=>{
     var ma = req.params.id;
     loaiMonAn.deleteOne({ma_loai : ma}, function(err, result){

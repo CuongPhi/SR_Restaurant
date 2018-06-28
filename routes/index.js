@@ -4,12 +4,15 @@ var passport= require('passport')
 var monAn = require('../model/MonAn');
 var loaiMonAn = require('../model/LoaiMonAn');
 var path = require('path');
+var multer = require('multer')
 var foodcController = require('../controller/foodcontroller');
 var typefoodController = require('../controller/typefood.js');
 var cartController = require('../controller/cartcontroller.js')
 var customerController = require('../controller/customerController');
 var accountController = require("../controller/accountcontroller");
 var billController  =require("../controller/list_bill");
+router.use(multer({dest: 'public/images/'}).single('hinh')); //Beware, you need to match .single() with whatever name="" of your file upload field in html
+//app.use(csrf({cookie: true})); //So here follows csurf, _after_ multer
 var csrf = require('csurf');
 //var csfProtect = csrf();
 //router.use(csfProtect);
@@ -21,13 +24,16 @@ router.get('/', foodcController.loadListFood);
 
 router.get('/single/:id', foodcController.foodDetail);
 //Các thao tác admin
+router.get('/admin/SignIn', accountController.adminSignIn);
 router.get('/admin',foodcController.adminMainPage);
 //Các thao tác thức ăn
 router.get('/admin/list_food', foodcController.adminListFood);
 
 router.get('/admin/detail_food/:id',foodcController.adminDetailFood);
 router.get('/admin/update_food/:id', foodcController.adminUpdateFood);
-router.post('admin/update_food/:id', foodcController.adminPostUpdate);
+router.post('/admin/update_food/:id', foodcController.adminPostUpdate);
+router.get('/admin/insert_food', foodcController.adminInsertFood);
+router.post('/admin/insert_food', foodcController.adminInsertFoodPost);
 //Các thao tác laoij thức ăn
 router.get('/admin/list_type_food', typefoodController.adminListTypeFood);
 
@@ -59,7 +65,7 @@ router.post('/customer/signup',passport.authenticate('local.signup',{
    failureRedirect:'/customer/signup',
    failureFlash:true
 }));
-
+router.get('/thu/:page', foodcController.FoodPage);
 
 router.get('/customer/profile', customerController.Profile )
 
