@@ -132,56 +132,39 @@
 	   		     	 <div class="clearfix"> </div>		 
 				</div>
 			 {{/each}}	
-			  <hr  width="100%" size="5px" align="center" color="blue" height="12px" /> 
 				  <div class="clearfix"> </div>
-				
-				  <div class="detailBox">
-    <div class="titleBox">
-      <label>Comment Box</label>
-        <button type="button" class="close" aria-hidden="true">&times;</button>
-    </div>
-    <div class="commentBox">
-        
-        <p class="taskDescription">Bình luận về món ăn.</p>
-    </div>
-    <div class="actionBox">
-        <ul class="commentList">
-            <li>
-                <div class="commenterImage">
-                  <img src="http://placekitten.com/50/50" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-				<div class="product-col-1">
-					<p class="image">
-						<div class="avatar-img">
-							<span class="avatar-letter">TM</span>
-						</div>
-					</p>
-					<p class="name" itemprop="author">Duong Tien Minh</p>
-					<p class="from"><!-- react-text: 55 -->đến từ <!-- /react-text --><span>Lạng Sơn</span></p>
-					<p class="days">11 ngày trước</p>
-				</div>
-            </li>
-           
-           
-        </ul>
-        <form class="form-inline" role="form" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" name="cmt"placeholder="Your comments" />
-            </div>
-            <div class="form-group">
-                <button class="btn btn-default">Add</button>
-            </div>
-        </form>
-    </div>
-</div>
-			</div>
-			
-	
-
+			</div>   
+		{{!-- {{>menu}}
 	   		   
 	   	
-	
+	</div> --}}
+	{{!-- <nav class="pagination" role="navigation">
+    {{#if prev}}
+        <a class="newer-posts" href="{{page_url prev}}">&larr; Newer Posts</a>
+    {{/if}}
+    <span class="page-number">Page {{page}} of {{pages}}</span>
+    {{#if next}}
+        <a class="older-posts" href="{{page_url next}}">Older Posts &rarr;</a>
+    {{/if}}
+</nav> --}}
+
+		{{#pagination current pages size}}
+<div class="pagination">
+  {{#unless startFromFirstPage}}
+    <a href="#">&lt;</a>
+  {{/unless}}
+
+  {{#each pages}}
+    {{#if isCurrent}}
+      [<a href="#">{{pages}}</a>]
+    {{/if}}
+    {{#unless isCurrent}}
+      <a href="#">{{pages}}</a>
+    {{/unless}}
+  {{/each}}
+
+  {{#unless endAtLastPage}}
+    <a href="#">&gt;</a>
+  {{/unless}}
+</div>
+{{/pagination}}

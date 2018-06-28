@@ -46,12 +46,23 @@ exports.adminInsert=(req, res)=>{
     res.render('admin/insert_account',  { layout:'../admin/layout.hbs',csrfToken:req.csrfToken() });
 }
 exports.adminInsertPost=(req, res)=>{
+    req.checkBody('ma', 'Nhập mã!').notEmpty();
+  req.checkBody('loaiTK', 'Loại tài khoản !').notEmpty();
+  req.checkBody('ten', 'Nhập tên').notEmpty();
+  req.checkBody('trangThai', 'Trạng thái!').notEmpty();
+  req.checkBody('mk', 'Nhập mật khẩu').notEmpty();
+  var errors = req.validationErrors();
+  if (errors) {
+    res.render('admin/insert_account', { flash: { type: 'alert-danger', messages: errors },layout:'../admin/layout.hbs',csrfToken:req.csrfToken()});
+  }
+  else {
     var ma = req.body.ma.trim();
+
     var loaitk = req.body.loaitk.trim();
     var tendn = req.body.ten.trim();
     var trangThai=req.body.trangThai.trim();
     var matKhau = req.body.mk.trim();
-    var kq='';
+  
     var loaiMoi = new Account({
     ma:ma,
     _user:tendn,
@@ -69,7 +80,7 @@ exports.adminInsertPost=(req, res)=>{
      {
         if(err)
         {
-            console.log(err);
+            res.render('admin/insert_account', { flash: { type: 'alert-danger', messages: [ { msg: 'Mã đã tồn tại!' }] },layout:'../admin/layout.hbs',csrfToken:req.csrfToken()});
         }
         else
         {
@@ -77,10 +88,11 @@ exports.adminInsertPost=(req, res)=>{
         }
      }
     )
-    res.render('admin/insert_account', { layout:'../admin/layout.hbs',csrfToken:req.csrfToken()});
+    res.render('register', { flash: { type: 'alert-success', messages: [ { msg: 'Thành công!' }]}, layout:'../admin/layout.hbs',csrfToken:req.csrfToken()});
+}
 }
 exports.adminSignIn=(req, res)=>{
-    res.render('admin/signin');
+    res.render('admin/SignIn', { layout:false});
 }
 var Handlebars = require('handlebars')
 Handlebars.registerHelper('select', function(selected, option) {
