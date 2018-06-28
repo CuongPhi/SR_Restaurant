@@ -11,7 +11,7 @@
 				<div class="register-but">
 				   <form method="POST" >
 					     <div class="  register-bottom-grid">
-						    <h3>LOGIN INFORMATION</h3>
+						    <h3>SIGNUP FOR FREE ACCOUNT</h3>
 							{{#if hasError}}
 								<div class="alert alert-danger">
 									{{#each messages}}
@@ -23,9 +23,9 @@
 								<span>UserName<label>*</label></span>
 								<input name="userName" type="text">
 								<span>Password<label>*</label></span>
-								<input name="passWord" type="text">
+								<input name="passWord" type="password">
 								<span>Confirm Password<label>*</label></span>
-								<input  name="passWord2" type="text">
+								<input  name="passWord2" type="password">
 							</div>
 					 </div>
 					   	<input name="_csrf" type="hidden" value="{{csrfToken}}">

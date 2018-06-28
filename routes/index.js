@@ -70,11 +70,10 @@ router.get('/thu/:page', foodcController.FoodPage);
 router.get('/customer/profile', customerController.Profile )
 
 router.get('/customer/signin', isNotLoggedIn,customerController.SignIn)
-router.post('/customer/signin',passport.authenticate('local.signin',{
-   successRedirect:'/',
-   failureRedirect:'/customer/signin',
-   failureFlash:true
-}));
+router.post('/customer/signin',passport.authenticate('local.signin',{ 
+    successRedirect : '/',failureRedirect:'/customer/signin',   failureFlash:true  }),
+  
+);
 
 router.get('/customer/signout', isLoggedIn,function(req,res,next){
   req.logout();
@@ -87,6 +86,9 @@ router.get('/add-to-cart/:id',customerController.AddToCart);
 router.get('/cartview', cartController.cartView)
 
 router.get('/checkout',cartController.checkOut)
+
+router.post('/checkout', cartController.postCheckOut)
+
 
 //   router.get('/admin/detail_food/:id', function(req, res){
 //     var ma = req.params.id;
